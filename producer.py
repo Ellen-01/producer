@@ -2,6 +2,7 @@ import time
 import random
 import psycopg2
 import os
+from alerts import verificar_alerta
 
 
 # Validación de rangos de datos meteorológicos 
@@ -57,7 +58,7 @@ while True:
         )
         conn.commit()
         print(f"[Producer] Dato enviado: estacion_id={estacion_id}, temperatura={temperatura}, humedad={humedad}", flush=True)
-    
+        verificar_alerta(temperatura, humedad)
     except Exception as e:
         print(f"[Producer] Error al insertar dato: {e}", flush=True)
         conn.rollback()  # Reinicia la transacción para poder seguir insertando
