@@ -1,5 +1,5 @@
 # servicios de alertas por umbrales
-def generar_alerta(estacion_id, temperatura, humedad):
+def verificar_alerta(estacion_id, temperatura, humedad):
     if temperatura > 40:
         print(f"[ALERTA ] Estación {estacion_id}: Temperatura crítica ({temperatura}°C)")
     elif humedad < 20:

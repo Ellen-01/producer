@@ -1,9 +1,17 @@
-FROM python:3.12-slim
+FROM python:3.9-slim
 
 WORKDIR /app
 
-COPY producer.py .
+# Copiamos el código
+COPY api.py /app
+COPY alerts.py /app
+COPY requirements.txt /app
 
-RUN pip install psycopg2-binary
+# Instalamos dependencias
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "producer.py"]
+# La app corre en el puerto 5001 (como en api.py)
+EXPOSE 5001
+
+# Comando para ejecutar la API
+CMD ["python", "api.py"]
